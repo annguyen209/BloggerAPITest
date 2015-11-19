@@ -43,6 +43,8 @@ namespace BloggerAPI
                 List<string> listURL = new List<string>();
                 foreach (var p in list)
                 {
+                    p.Updated = DateTime.Now.AddMinutes(new Random().Next(30));
+                    p.Published = p.Updated.Value.AddMinutes(new Random().Next(30));
                     string rs = await repo.AddPostToBlogAsync(p);
                     listURL.Add(rs);
                 }
@@ -68,6 +70,8 @@ namespace BloggerAPI
                     var exist = listPost.Where(pa => pa.Title.Equals(p.Title)).FirstOrDefault();
                     if (exist == null)
                     {
+                        p.Updated = DateTime.Now.AddMinutes(new Random().Next(30));
+                        p.Published = p.Updated.Value.AddMinutes(new Random().Next(30));
                         string rs = await repo.AddPostToBlogAsync(p);
                         listURL.Add(rs);
                     }
