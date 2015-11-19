@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>ftp://ftp.hostbuddy.com/site1</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="About.aspx">
+      <publishTime>11/17/2015 15:25:55</publishTime>
+    </File>
+    <File Include="Account/Login.aspx">
+      <publishTime>11/17/2015 15:26:08</publishTime>
+    </File>
+    <File Include="Account/Manage.aspx">
+      <publishTime>11/17/2015 15:26:08</publishTime>
+    </File>
+    <File Include="Account/OpenAuthProviders.ascx">
+      <publishTime>11/17/2015 15:26:08</publishTime>
+    </File>
+    <File Include="Account/Register.aspx">
+      <publishTime>11/17/2015 15:26:08</publishTime>
+    </File>
+    <File Include="Account/RegisterExternalLogin.aspx">
+      <publishTime>11/17/2015 15:26:08</publishTime>
+    </File>
+    <File Include="Account/Web.config">
+      <publishTime>11/17/2015 15:26:09</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>11/17/2015 15:26:03</publishTime>
+    </File>
+    <File Include="bin/AspNet.ScriptManager.bootstrap.dll">
+      <publishTime>11/17/2015 15:26:05</publishTime>
+    </File>
+    <File Include="bin/AspNet.ScriptManager.jQuery.dll">
+      <publishTime>11/17/2015 15:26:05</publishTime>
+    </File>
+    <File Include="bin/BloggerAPI.dll">
+      <publishTime>11/18/2015 09:58:43</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>11/17/2015 15:26:10</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>11/17/2015 15:26:10</publishTime>
+    </File>
+    <File Include="bin/Google.GData.Blogger.dll">
+      <publishTime>06/14/2013 11:52:38</publishTime>
+    </File>
+    <File Include="bin/Google.GData.Client.dll">
+      <publishTime>06/14/2013 11:52:36</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.FriendlyUrls.dll">
+      <publishTime>11/17/2015 15:26:07</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
+      <publishTime>11/17/2015 15:26:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
+      <publishTime>11/17/2015 15:26:13</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
+      <publishTime>11/17/2015 15:26:13</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Web.Optimization.WebForms.dll">
+      <publishTime>11/17/2015 15:26:07</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.dll">
+      <publishTime>11/17/2015 15:26:13</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>11/17/2015 15:26:13</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
+      <publishTime>11/17/2015 15:26:14</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.dll">
+      <publishTime>11/17/2015 15:26:14</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Facebook.dll">
+      <publishTime>11/17/2015 15:26:14</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Google.dll">
+      <publishTime>11/17/2015 15:26:14</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.MicrosoftAccount.dll">
+      <publishTime>11/17/2015 15:26:15</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
+      <publishTime>11/17/2015 15:26:15</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Twitter.dll">
+      <publishTime>11/17/2015 15:26:14</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ScriptManager.MSAjax.dll">
+      <publishTime>11/17/2015 15:26:05</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ScriptManager.WebForms.dll">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>11/18/2015 09:23:06</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>11/17/2015 15:26:15</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>11/17/2015 15:26:04</publishTime>
+    </File>
+    <File Include="bin/System.Web.Providers.dll">
+      <publishTime>11/17/2015 15:26:13</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>11/17/2015 15:26:03</publishTime>
+    </File>
+    <File Include="Bundle.config">
+      <publishTime>11/17/2015 15:25:55</publishTime>
+    </File>
+    <File Include="Contact.aspx">
+      <publishTime>11/17/2015 15:25:55</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>11/17/2015 15:26:03</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>11/17/2015 15:26:03</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>11/17/2015 15:26:09</publishTime>
+    </File>
+    <File Include="Default.aspx">
+      <publishTime>11/18/2015 09:25:57</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>11/17/2015 15:25:55</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>11/17/2015 15:26:03</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>11/17/2015 15:26:03</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>11/17/2015 15:26:03</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>11/17/2015 15:26:03</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>11/17/2015 15:25:55</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>11/18/2015 09:52:05</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>11/17/2015 15:26:03</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>11/17/2015 15:26:03</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.js">
+      <publishTime>11/17/2015 15:25:59</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.js">
+      <publishTime>11/17/2015 15:25:59</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.map">
+      <publishTime>11/17/2015 15:25:59</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>11/17/2015 15:26:02</publishTime>
+    </File>
+    <File Include="Scripts/respond.js">
+      <publishTime>11/17/2015 15:26:02</publishTime>
+    </File>
+    <File Include="Scripts/respond.min.js">
+      <publishTime>11/17/2015 15:26:02</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/DetailsView.js">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/Focus.js">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/GridView.js">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/Menu.js">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MenuStandards.js">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjax.js">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxApplicationServices.js">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxComponentModel.js">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxCore.js">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxGlobalization.js">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxHistory.js">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxNetwork.js">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxSerialization.js">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxTimer.js">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxWebForms.js">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxWebServices.js">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/SmartNav.js">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/TreeView.js">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/WebForms.js">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/WebParts.js">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/WebUIValidation.js">
+      <publishTime>11/17/2015 15:26:06</publishTime>
+    </File>
+    <File Include="Scripts/_references.js">
+      <publishTime>11/17/2015 15:26:02</publishTime>
+    </File>
+    <File Include="Site.Master">
+      <publishTime>11/17/2015 15:26:09</publishTime>
+    </File>
+    <File Include="Site.Mobile.Master">
+      <publishTime>11/17/2015 15:26:08</publishTime>
+    </File>
+    <File Include="ViewSwitcher.ascx">
+      <publishTime>11/17/2015 15:26:08</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>11/18/2015 09:59:12</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

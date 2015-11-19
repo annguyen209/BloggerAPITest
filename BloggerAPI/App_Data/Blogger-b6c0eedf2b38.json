@@ -1,0 +1,11 @@
+{
+  "type": "service_account",
+  "private_key_id": "b6c0eedf2b38633eb45ee0e7308436d0ffe7cae8",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCMBN4+djPrlXNk\niTW7f8KveF65+M0Q1ITI1Nzc0CtjYXaCiWuiUHe5czbCXgwRhf8SQwGBvXZPOALd\n3kWrymnz1LrDz2+0nUcofV+VlGZ0p4CRgxs3B0bVVpJ77CcggxAmefULZzI8L9f/\nUr3QFhtZcouNlP+OQltcCX1d2C2ax6uAbxhFGzRvJtb8TeQzWzVUMpKLQGI1r36q\nzZbw4HzsRLE883B0Eu7CHo5jduHBcBVfvERi6dwCeG6i6Co2ycnHPakJu3E5YLpL\nPKJOv2XYDwd0Z7nJtqOuDfF+4M1oqr7980Y6RAXSLz2c4YbLFnPJ03CnWZWTWaZP\nmb8d8OBjAgMBAAECggEAJ/Vvs2WqVY4WG1fpBLRmTAtPBUXSx/3OUz4kNcQWzcrP\ntlsfY3gRYtRViUyrpwiVjZGfyXXXYK48azL2sRsX96T7E8yMNYA5AX4eHCL4xkvT\nLjO7PY4PEe0d6s2vMOEWZ9SgMPvnYzPIMa5cSxkz/ufomaQu9ltLlU2EAJckFKqA\nsFNgiU/DVKTSQ4vSZS996C+JKrv5VFM665UbtaLpDtC1MBDIBaAivauyj4QAZaz8\nnEHjTa+dK36+5jvS2v7BSB7r5Ltn5imEkj5bJhcGyaCfS7WBgHiJeoCp+niyd+ZL\nN/rgr2wHmzTtT1L4NmPmMVVcWUZkQ1GEStIxnhY+6QKBgQDIy8PT9pbAjBv91ZIE\nrEzlZQOZnP14pVQAocHKJiGpOyB/3KkQ3P4vbympOCC5hLiUCJqIn3WV0o4A5Bh8\nmeMr3HSP5plm4o2BGsF65+nWHg59ST38KHytNNg6LciQpH/eKQJfW7LDbNUBFzR+\nYBRJzjHQStqVuUiJ4/kjs0LlxQKBgQCyg46NUiP5L25YUXOr8FDANGxXy8tBDRzT\nsfcEpBxDUYXQJ+laq7THPPfgPSLwb+PA44Tki3kNmdh3ESHtDr8OR9vWHRQ1DO74\nzlP1+DHRXRIypTDsgqJN7Fytn8MS3DhN4KSEA10b6q0wrc3juu3X8x+uJlZvgYLD\nzU824Iu4BwKBgEqRcW37+0wSPCrt70YQ/pWKB+Y6KN9u9l0ttRvvQTzpmk4hkh+T\nEkpnS99t2qlKoolHEKyAG1jCUr399yH+vCCDxD3Uc0+D/uzdFNEh4vMDQnpAguZr\n2rEwGMSyT/N3Q40rSZhEI4Tzm77F8ValM6OdEV67DaXgoxGiOdmKLuPJAoGAeu+o\no2BXD8t/VWk6nMVSBxvTJR9e6XyrRoq/z71pDV8+JRznUp7/T1qIZjAUOLsFgRfu\ntCntAtXZQh5VW9kU8DPCjJDYErTGeig1oCX9wO40kxY6PBa2ya0mIhftErcAO3mi\nMpvSamBSRzzalqNsGpT/U0Jpsj7hnBBvJh67ec8CgYEAqI5X542optMUBX9nWbJN\nXAWNZoU/ftJTnTSHImwan5XBUT7ev7AVMtktwJMFEzNBRTVHTd+fzDWv63bZLYHw\n2By6mfL6MsGkGEL+SwSj+oxwz3WCrXZ0GOTaEznqFw2l1N2Sujbv4qg8ZZHWPDuL\n2AXrqYo6J3CXE5MxWJSnu2M=\n-----END PRIVATE KEY-----\n",
+  "client_email": "account-1@blogger-1132.iam.gserviceaccount.com",
+  "client_id": "110782883057887729816",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/account-1%40blogger-1132.iam.gserviceaccount.com"
+}

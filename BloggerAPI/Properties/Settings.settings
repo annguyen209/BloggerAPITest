@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BloggerAPI.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="GAPIClientId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">683522275515-sdiucnq0duov0d48e6ausra2acd8ncbg.apps.googleusercontent.com</Value>
+    </Setting>
+    <Setting Name="GAPIClientSecret" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">3nyg0fXKcNt3k4Vc3ndgJxzm</Value>
+    </Setting>
+    <Setting Name="GAPIAPIKey" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">AIzaSyCG0Z5-jdGRpu-jvdhmavLG8D8KMmKJhHA</Value>
+    </Setting>
+    <Setting Name="GAPIApplicationName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Blogger</Value>
+    </Setting>
+    <Setting Name="BlogId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">2854371125320838792</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
