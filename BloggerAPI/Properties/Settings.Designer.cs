@@ -25,7 +25,7 @@ namespace BloggerAPI.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("683522275515-sdiucnq0duov0d48e6ausra2acd8ncbg.apps.googleusercontent.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("683522275515-3fdi6jv0e61gm35hdolhgn4capb08vgb.apps.googleusercontent.com")]
         public string GAPIClientId {
             get {
                 return ((string)(this["GAPIClientId"]));
@@ -34,7 +34,7 @@ namespace BloggerAPI.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("3nyg0fXKcNt3k4Vc3ndgJxzm")]
+        [global::System.Configuration.DefaultSettingValueAttribute("rNL09mVuQCj1vCz8UD-31Wt0")]
         public string GAPIClientSecret {
             get {
                 return ((string)(this["GAPIClientSecret"]));
@@ -65,6 +65,15 @@ namespace BloggerAPI.Properties {
         public string BlogId {
             get {
                 return ((string)(this["BlogId"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("annguyen209@gmail.com")]
+        public string Username {
+            get {
+                return ((string)(this["Username"]));
             }
         }
     }

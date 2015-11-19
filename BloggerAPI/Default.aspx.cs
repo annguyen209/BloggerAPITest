@@ -12,90 +12,140 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using AngleSharp;
+
+
 namespace BloggerAPI
 {
     public partial class _Default : Page
     {
-        protected async void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
-            BloggerRepository repo = new BloggerRepository();
-            //Task<IEnumerable<Blog>> list = repo.GetBlogsAsync();
-            var list = await repo.GetBlogsAsync();
-            foreach (var b in list)
-            {
-                Result.Controls.Add(new HtmlGenericControl() { InnerText = b.Id + " " + b.Name });
-            }
-            //var code = Request["code"];
-            //var error = Request["error"];
-            //var action = Request["action"];
-            //var newUserId = "annguyen209@gmail.com";
-            //if (newUserId != null)
-            //{
-            //    Session["GapiUserId"] = newUserId;
-            //}
-            //if (newUserId != null || code != null || error != null || action != null)
-            //{
-            //    APISupporter sup = new APISupporter();
-            //    var result = sup.Authorize(Request, Session["GapiUserId"] as string);
-            //    if (result is AuthorizationCodeWebApp.AuthResult)
-            //    {
-            //        var authResult = result as AuthorizationCodeWebApp.AuthResult;
-            //        Response.Redirect(authResult.RedirectUri);
-            //    }
-            //    else if (result is string && (result as string) == "OK")
-            //    {
-            //        Session["APISupporter"] = sup;
-            //        //Response.Redirect("Page2.aspx");
-                    
-            //    }
-            //    else if (result is Task<string>)
-            //    {
-            //        //var task = result as Task<string>;
-            //        // Authorization was, now just need to refresh the page to log in again
-            //        Response.Redirect(Request.Url.AbsolutePath + "?action=check");
-            //    }
-            //    else if (result is UserRejectException)
-            //    {
-            //        // User rejected the invitation
-            //        RenderException(new Exception("User rejected the invitation", result as UserRejectException));
-            //    }
-            //    else if (result is Exception)
-            //    {
-            //        // Other error occurred when accessing the service Google Api
-            //        RenderException(result as Exception);
-            //    }
-            //    else
-            //    {
-            //        // unexpected happened
-            //        RenderException(new Exception("unexpected happened", new Exception("Authorize unexpected happened")));
-            //    }
-            //}
+
         }
 
         protected async void btnRun_Click(object sender, EventArgs e)
         {
-            //APISupporter sup = (APISupporter) Session["APISupporter"];
-            //var rs = sup.GetBlog();
-            //Result.Controls.Add(new HtmlGenericControl() { InnerText = "• " + rs.ToString() });
-
-            BloggerRepository repo = new BloggerRepository();
-            //Task<IEnumerable<Blog>> list = repo.GetBlogsAsync();
-            var list = await repo.GetBlogsAsync();
-            foreach (var b in list)
-            {
-                Result.Controls.Add(new HtmlGenericControl() { InnerText = b.Id + " " + b.Name });
-            }
-            
+            var address = "http://www.cssauthor.com/blogger-templates-2015/";
+            var label = new List<string>();
+            label.Add("Blogger Theme");
+            //RunImportFromSite(address, label);
+            RunImportFromSiteWithCheckExist(address, label);
         }
 
-        private void RenderException(Exception ex)
+        protected async void RunImportFromSite(string url, List<string> label)
         {
-            while (ex != null)
+            BloggerRepository repo = new BloggerRepository();
+            try
             {
-                ErrorPan.Controls.Add(new HtmlGenericControl() { InnerText = "• " + ex.Message });
-                ex = ex.InnerException;
+                repo.Authenticate();
+                var list = await AnalyzeWeb(url, label);
+                List<string> listURL = new List<string>();
+                foreach (var p in list)
+                {
+                    string rs = await repo.AddPostToBlogAsync(p);
+                    listURL.Add(rs);
+                }
+                Result.Controls.Add(new HtmlGenericControl() { InnerText = "Post URL : <br/>" + string.Join("<br />", listURL) });
+            }
+            catch (Exception ex)
+            {
+                Result.Controls.Add(new HtmlGenericControl() { InnerText = "Exception :)" + ex.StackTrace });
             }
         }
-       
+
+        protected async void RunImportFromSiteWithCheckExist(string url, List<string> label)
+        {
+            BloggerRepository repo = new BloggerRepository();
+            try
+            {
+                repo.Authenticate();
+                var list = await AnalyzeWeb(url, label);
+                List<string> listURL = new List<string>();
+                var listPost = await repo.GetPostByLabel(label.FirstOrDefault());
+                foreach (var p in list)
+                {
+                    var exist = listPost.Where(pa => pa.Title.Equals(p.Title)).FirstOrDefault();
+                    if (exist == null)
+                    {
+                        string rs = await repo.AddPostToBlogAsync(p);
+                        listURL.Add(rs);
+                    }
+                }
+                Result.Controls.Add(new HtmlGenericControl() { InnerText = "Post URL : <br/>" + string.Join("<br />", listURL) });
+            }
+            catch (Exception ex)
+            {
+                Result.Controls.Add(new HtmlGenericControl() { InnerText = "Exception: " + "<h3>" + ex.Message + "</h3><br/>" + ex.StackTrace });
+            }
+        }
+        protected async Task<IEnumerable<Google.Apis.Blogger.v3.Data.Post>> AnalyzeWeb(string url, List<string> label)
+        {
+            try
+            {
+                List<Google.Apis.Blogger.v3.Data.Post> listPosts = new List<Google.Apis.Blogger.v3.Data.Post>();
+
+                var config = Configuration.Default.WithDefaultLoader();
+                var address = url;
+                var document = await BrowsingContext.New(config).OpenAsync(address);
+                var root = document.QuerySelector("div.post-content");
+                foreach (var item in root.QuerySelectorAll("h3.new"))
+                {
+                    Google.Apis.Blogger.v3.Data.Post post = new Google.Apis.Blogger.v3.Data.Post();
+                    post.Title = item.TextContent;
+
+                    post.Labels = label;
+                    
+                    var nextSib = item.NextSibling; //<1st p>
+                    while (nextSib != null && nextSib.NodeName.ToLower().Equals("p"))
+                    {
+                        var html = nextSib.ToHtml();
+                        
+                        if (nextSib.NextSibling != null && nextSib.NextSibling.NodeName.ToLower().Equals("h3"))
+                        {
+                            html = "<div class='button-blogger-theme'>" + html + "</div>";
+                        }
+                        post.Content += html;
+                        if (nextSib.NextSibling.NodeName.ToLower().Equals("ul"))
+                        {
+                            break;
+                        }
+                        nextSib = nextSib.NextSibling;
+                    }
+                    //post.Content = item.NextSibling.ToHtml() + item.NextSibling.NextSibling.ToHtml()
+                    //               + "<div class='button-blogger-theme'>" + item.NextSibling.NextSibling.NextSibling.ToHtml() + "</div>";
+                    listPosts.Add(post);
+                }
+
+                return listPosts;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        protected async void btnEditTime_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BloggerRepository repo = new BloggerRepository();
+                repo.Authenticate();
+                var listPost = await repo.GetPostByLabel("Blogger Theme");
+                List<string> listURL = new List<string>();
+                foreach (var p in listPost)
+                {
+                    p.Updated = DateTime.Now.AddMinutes(new Random().Next(30));
+                    p.Published = p.Updated.Value.AddMinutes(new Random().Next(30));
+                    var rs = await repo.UpdatePostToBlogAsync(p);
+                    listURL.Add(rs);
+                }
+                Result.Controls.Add(new HtmlGenericControl() { InnerText = "Post URL : <br/>" + string.Join("<br />", listURL) });
+            }
+            catch (Exception ex)
+            {
+                Result.Controls.Add(new HtmlGenericControl() { InnerText = "Exception :)" + ex.StackTrace });
+            }
+        }
     }
 }

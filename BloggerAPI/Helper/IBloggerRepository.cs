@@ -27,9 +27,6 @@ namespace BloggerAPI.Helper
         /// <summary>Blogger repository for retrieving blogs and posts.</summary>
         public interface IBloggerRepository
         {
-            /// <summary>Gets all post for the specified blog.</summary>
-            Task<IEnumerable<Post>> GetPostsAsync(string blogId);
-
             /// <summary>Get all user's blogs.</summary>
             Task<IEnumerable<Blog>> GetBlogsAsync();
         }

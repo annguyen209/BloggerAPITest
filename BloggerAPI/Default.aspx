@@ -1,7 +1,13 @@
-﻿<%@ Page Title="Home Page" Language="C#"  MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="BloggerAPI._Default" %>
+﻿<%@ Page Title="Home Page" Language="C#"  MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="BloggerAPI._Default" Async="true" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div runat="server" id="ErrorPan" style="background: yellow; color: red"/>
-    <asp:Button runat="server" CssClass="btn btn-primary" OnClick="btnRun_Click" ID="btnRun" Text="Run" />
+    <div style="padding-top: 2em;">
+        <h3>Generate Post</h3>
+        <asp:Button runat="server" CssClass="btn btn-danger" OnClick="btnRun_Click" ID="btnRun" Text="Run" Width="150" />
+    </div>
+    <div style="padding-top: 2em;">
+        <h3>Edit Time Post</h3>
+        <asp:Button runat="server" CssClass="btn btn-danger" OnClick="btnEditTime_Click" ID="btnEditTime" Text="Run" Width="150" />
+    </div>
     <div runat="server" id="Result" style="background: yellow; color: red"/>
 </asp:Content>

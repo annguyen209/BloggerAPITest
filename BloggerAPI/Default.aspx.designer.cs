@@ -13,15 +13,6 @@ namespace BloggerAPI {
     public partial class _Default {
         
         /// <summary>
-        /// ErrorPan control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ErrorPan;
-        
-        /// <summary>
         /// btnRun control.
         /// </summary>
         /// <remarks>
@@ -29,6 +20,15 @@ namespace BloggerAPI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRun;
+        
+        /// <summary>
+        /// btnEditTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEditTime;
         
         /// <summary>
         /// Result control.

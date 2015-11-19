@@ -60,7 +60,7 @@ namespace BloggerAPI.Helper
                 {
                     string redirectUri = uri;
                     string state = "ostate_";// Guid.NewGuid().ToString("N");
-                    var result = new AuthorizationCodeWebApp(CodeFlow, uri, uri).AuthorizeAsync(accountName, CancellationToken.None).Result;
+                    var result = new AuthorizationCodeWebApp(CodeFlow, redirectUri, state).AuthorizeAsync(accountName, CancellationToken.None).Result;
                     if (result.RedirectUri != null)
                     {
                         return result;
