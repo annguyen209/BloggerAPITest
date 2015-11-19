@@ -151,5 +151,27 @@ namespace BloggerAPI
                 Result.Controls.Add(new HtmlGenericControl() { InnerText = "Exception :)" + ex.StackTrace });
             }
         }
+
+        protected async void btnAddLabel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BloggerRepository repo = new BloggerRepository();
+                repo.Authenticate();
+                var listPost = await repo.GetPostNoneLabel();
+                List<string> listURL = new List<string>();
+                foreach (var p in listPost)
+                {
+                    p.Labels = new List<string> { "Technical Sharing" };
+                    var rs = await repo.UpdatePostToBlogAsync(p);
+                    listURL.Add(rs);
+                }
+                Result.Controls.Add(new HtmlGenericControl() { InnerText = "Post URL : <br/>" + string.Join("<br />", listURL) });
+            }
+            catch (Exception ex)
+            {
+                Result.Controls.Add(new HtmlGenericControl() { InnerText = "Exception :)" + ex.StackTrace });
+            }
+        }
     }
 }

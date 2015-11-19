@@ -9,5 +9,9 @@
         <h3>Edit Time Post</h3>
         <asp:Button runat="server" CssClass="btn btn-danger" OnClick="btnEditTime_Click" ID="btnEditTime" Text="Run" Width="150" />
     </div>
+    <div style="padding-top: 2em;">
+        <h3>Add Label For Non Label Post</h3>
+        <asp:Button runat="server" CssClass="btn btn-danger" OnClick="btnAddLabel_Click" ID="btnAddLabel" Text="Run" Width="150" />
+    </div>
     <div runat="server" id="Result" style="background: yellow; color: red"/>
 </asp:Content>

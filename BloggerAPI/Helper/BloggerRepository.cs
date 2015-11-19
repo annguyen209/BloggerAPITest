@@ -69,6 +69,7 @@ namespace BloggerAPI.Helper
             var updateReq = await service.Posts.Update(post, blogId, post.Id).ExecuteAsync();
             return updateReq.Url;
         }
+
         public async Task<IEnumerable<Google.Apis.Blogger.v3.Data.Post>> GetPostByLabel(string label)
         {
             try
@@ -82,6 +83,32 @@ namespace BloggerAPI.Helper
                     req.PageToken = reqRs.NextPageToken;
                     reqRs = await req.ExecuteAsync();
                     var rs = reqRs.Items.Where(p => p.Labels != null && p.Labels.FirstOrDefault().Equals(label)).ToList();
+                    if (rs != null)
+                    {
+                        list.AddRange(rs);
+                    }
+                }
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<IEnumerable<Google.Apis.Blogger.v3.Data.Post>> GetPostNoneLabel()
+        {
+            try
+            {
+                var req = service.Posts.List(blogId);
+                var reqRs = await req.ExecuteAsync();
+                List<Google.Apis.Blogger.v3.Data.Post> list = new List<Google.Apis.Blogger.v3.Data.Post>();
+                list = reqRs.Items.Where(p => p.Labels == null).ToList();
+                while (reqRs.NextPageToken != null)
+                {
+                    req.PageToken = reqRs.NextPageToken;
+                    reqRs = await req.ExecuteAsync();
+                    var rs = reqRs.Items.Where(p => p.Labels == null).ToList();
                     if (rs != null)
                     {
                         list.AddRange(rs);
