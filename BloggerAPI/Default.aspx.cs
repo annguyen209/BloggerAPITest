@@ -24,14 +24,7 @@ namespace BloggerAPI
 
         }
 
-        protected async void btnRun_Click(object sender, EventArgs e)
-        {
-            var address = "http://www.cssauthor.com/blogger-templates-2015/";
-            var label = new List<string>();
-            label.Add("Blogger Theme");
-            RunImportFromSite(address, label);
-            //RunImportFromSiteWithCheckExist(address, label);
-        }
+        
 
         protected async void RunImportFromSite(string url, List<string> label)
         {
@@ -99,12 +92,12 @@ namespace BloggerAPI
                     post.Title = item.TextContent;
 
                     post.Labels = label;
-                    
+
                     var nextSib = item.NextSibling; //<1st p>
                     while (nextSib != null && nextSib.NodeName.ToLower().Equals("p"))
                     {
                         var html = nextSib.ToHtml();
-                        
+
                         if (nextSib.NextSibling != null && nextSib.NextSibling.NodeName.ToLower().Equals("h3"))
                         {
                             html = "<div class='button-blogger-theme'>" + html + "</div>";
@@ -129,58 +122,63 @@ namespace BloggerAPI
             }
         }
 
-        protected async void btnEditTime_Click(object sender, EventArgs e)
+        
+
+        protected async void btnRunAction_Click(object sender, EventArgs e)
         {
             try
             {
-                BloggerRepository repo = new BloggerRepository();
-                repo.Authenticate();
-                var listPost = await repo.GetPostByLabel("Blogger Theme");
-                List<string> listURL = new List<string>();
-                foreach (var p in listPost)
+                string action = ddlAction.SelectedValue;
+
+                switch (action)
                 {
-                    p.Updated = DateTime.Now.AddMinutes(new Random().Next(30));
-                    p.Published = p.Updated.Value.AddMinutes(new Random().Next(30));
-                    var rs = await repo.UpdatePostToBlogAsync(p);
-                    listURL.Add(rs);
+                    case "Generate Post":
+                        var address = "http://www.cssauthor.com/blogger-templates-2015/";
+                        var label = new List<string>();
+                        label.Add("Blogger Theme");
+                        RunImportFromSite(address, label);
+                        break;
+                    case "Generate Post With Checking Existence":
+                        address = "http://www.cssauthor.com/blogger-templates-2015/";
+                        label = new List<string>();
+                        label.Add("Blogger Theme");
+                        RunImportFromSiteWithCheckExist(address, label);
+                        break;
+                    case "Edit Time Post":
+
+                        BloggerRepository repo = new BloggerRepository();
+                        repo.Authenticate();
+                        var listPost = await repo.GetPostByLabel("Blogger Theme");
+                        List<string> listURL = new List<string>();
+                        foreach (var p in listPost)
+                        {
+                            p.Updated = DateTime.Now.AddMinutes(new Random().Next(30));
+                            p.Published = p.Updated.Value.AddMinutes(new Random().Next(30));
+                            var rs = await repo.UpdatePostToBlogAsync(p);
+                            listURL.Add(rs);
+                        }
+                        Result.Controls.Add(new HtmlGenericControl() { InnerText = "Post URL : <br/>" + string.Join("<br />", listURL) });
+                        break;
+                    case "Add Label For Non Label Post":
+                        repo = new BloggerRepository();
+                        repo.Authenticate();
+                        listPost = await repo.GetPostNoneLabel();
+                        listURL = new List<string>();
+                        foreach (var p in listPost)
+                        {
+                            p.Labels = new List<string> { "Technical Sharing" };
+                            var rs = await repo.UpdatePostToBlogAsync(p);
+                            listURL.Add(rs);
+                        }
+                        Result.Controls.Add(new HtmlGenericControl() { InnerText = "Post URL : <br/>" + string.Join("<br />", listURL) });
+                        break;
+                    default: break;
                 }
-                Result.Controls.Add(new HtmlGenericControl() { InnerText = "Post URL : <br/>" + string.Join("<br />", listURL) });
             }
             catch (Exception ex)
             {
-                Result.Controls.Add(new HtmlGenericControl() { InnerText = "Exception :)" + ex.StackTrace });
+                Result.Controls.Add(new HtmlGenericControl() { InnerText = "Exception: " + "<h3>" + ex.Message + "</h3><br/>" + ex.StackTrace });
             }
-        }
-
-        protected async void btnAddLabel_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                BloggerRepository repo = new BloggerRepository();
-                repo.Authenticate();
-                var listPost = await repo.GetPostNoneLabel();
-                List<string> listURL = new List<string>();
-                foreach (var p in listPost)
-                {
-                    p.Labels = new List<string> { "Technical Sharing" };
-                    var rs = await repo.UpdatePostToBlogAsync(p);
-                    listURL.Add(rs);
-                }
-                Result.Controls.Add(new HtmlGenericControl() { InnerText = "Post URL : <br/>" + string.Join("<br />", listURL) });
-            }
-            catch (Exception ex)
-            {
-                Result.Controls.Add(new HtmlGenericControl() { InnerText = "Exception :)" + ex.StackTrace });
-            }
-        }
-
-        protected async void btnRunCheckingExist_Click(object sender, EventArgs e)
-        {
-            var address = "http://www.cssauthor.com/blogger-templates-2015/";
-            var label = new List<string>();
-            label.Add("Blogger Theme");
-            //RunImportFromSite(address, label);
-            RunImportFromSiteWithCheckExist(address, label);
         }
     }
 }

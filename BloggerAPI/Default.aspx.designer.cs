@@ -13,40 +13,22 @@ namespace BloggerAPI {
     public partial class _Default {
         
         /// <summary>
-        /// btnRun control.
+        /// ddlAction control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRun;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAction;
         
         /// <summary>
-        /// btnRunCheckingExist control.
+        /// btnRunAction control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRunCheckingExist;
-        
-        /// <summary>
-        /// btnEditTime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEditTime;
-        
-        /// <summary>
-        /// btnAddLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddLabel;
+        protected global::System.Web.UI.WebControls.Button btnRunAction;
         
         /// <summary>
         /// Result control.
