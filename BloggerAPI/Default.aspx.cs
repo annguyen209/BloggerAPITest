@@ -24,15 +24,13 @@ namespace BloggerAPI
 
         }
 
-        
-
-        protected async void RunImportFromSite(string url, List<string> label)
+        protected async void RunImportFromCSAuthor(List<string> label)
         {
             BloggerRepository repo = new BloggerRepository();
             try
             {
                 repo.Authenticate();
-                var list = await AnalyzeWeb(url, label);
+                var list = await AnalyzeCSAuthor(label);
                 List<string> listURL = new List<string>();
                 foreach (var p in list)
                 {
@@ -49,13 +47,13 @@ namespace BloggerAPI
             }
         }
 
-        protected async void RunImportFromSiteWithCheckExist(string url, List<string> label)
+        protected async void RunImportFromCSAuthorWithCheckExist(List<string> label)
         {
             BloggerRepository repo = new BloggerRepository();
             try
             {
                 repo.Authenticate();
-                var list = await AnalyzeWeb(url, label);
+                var list = await AnalyzeCSAuthor(label);
                 List<string> listURL = new List<string>();
                 var listPost = await repo.GetPostByLabel(label.FirstOrDefault());
                 foreach (var p in list)
@@ -76,12 +74,12 @@ namespace BloggerAPI
                 Result.Controls.Add(new HtmlGenericControl() { InnerText = "Exception: " + "<h3>" + ex.Message + "</h3><br/>" + ex.StackTrace });
             }
         }
-        protected async Task<IEnumerable<Google.Apis.Blogger.v3.Data.Post>> AnalyzeWeb(string url, List<string> label)
+        protected async Task<IEnumerable<Google.Apis.Blogger.v3.Data.Post>> AnalyzeCSAuthor(List<string> label)
         {
             try
             {
                 List<Google.Apis.Blogger.v3.Data.Post> listPosts = new List<Google.Apis.Blogger.v3.Data.Post>();
-
+                var url = "http://www.cssauthor.com/blogger-templates-2015/";
                 var config = Configuration.Default.WithDefaultLoader();
                 var address = url;
                 var document = await BrowsingContext.New(config).OpenAsync(address);
@@ -122,8 +120,38 @@ namespace BloggerAPI
             }
         }
 
-        
+        protected async void UpdateTimeOfAllPostByLabel(string label)
+        {
+            BloggerRepository repo = new BloggerRepository();
+            repo.Authenticate();
+            var listPost = await repo.GetPostByLabel(label);
+            List<string> listURL = new List<string>();
+            foreach (var p in listPost)
+            {
+                p.Updated = DateTime.Now.AddMinutes(new Random().Next(30));
+                p.Published = p.Updated.Value.AddMinutes(new Random().Next(30));
+                var rs = await repo.UpdatePostToBlogAsync(p);
+                listURL.Add(rs);
+            }
+            Result.Controls.Add(new HtmlGenericControl() { InnerText = "Post URL : <br/>" + string.Join("<br />", listURL) });
+                        
+        }
 
+        protected async void AddLabelForNonLabelPost(string label)
+        {
+            var repo = new BloggerRepository();
+            repo.Authenticate();
+            var listPost = await repo.GetPostNoneLabel();
+            var listURL = new List<string>();
+            foreach (var p in listPost)
+            {
+                p.Labels = new List<string> { label };
+                var rs = await repo.UpdatePostToBlogAsync(p);
+                listURL.Add(rs);
+            }
+            Result.Controls.Add(new HtmlGenericControl() { InnerText = "Post URL : <br/>" + string.Join("<br />", listURL) });
+                        
+        }
         protected async void btnRunAction_Click(object sender, EventArgs e)
         {
             try
@@ -132,45 +160,21 @@ namespace BloggerAPI
 
                 switch (action)
                 {
-                    case "Generate Post":
-                        var address = "http://www.cssauthor.com/blogger-templates-2015/";
+                    case "Generate Post CSAuthor":
                         var label = new List<string>();
                         label.Add("Blogger Theme");
-                        RunImportFromSite(address, label);
+                        RunImportFromCSAuthor(label);
                         break;
-                    case "Generate Post With Checking Existence":
-                        address = "http://www.cssauthor.com/blogger-templates-2015/";
+                    case "Generate Post CSAuthor With Checking Existence":
                         label = new List<string>();
                         label.Add("Blogger Theme");
-                        RunImportFromSiteWithCheckExist(address, label);
+                        RunImportFromCSAuthorWithCheckExist(label);
                         break;
-                    case "Edit Time Post":
-
-                        BloggerRepository repo = new BloggerRepository();
-                        repo.Authenticate();
-                        var listPost = await repo.GetPostByLabel("Blogger Theme");
-                        List<string> listURL = new List<string>();
-                        foreach (var p in listPost)
-                        {
-                            p.Updated = DateTime.Now.AddMinutes(new Random().Next(30));
-                            p.Published = p.Updated.Value.AddMinutes(new Random().Next(30));
-                            var rs = await repo.UpdatePostToBlogAsync(p);
-                            listURL.Add(rs);
-                        }
-                        Result.Controls.Add(new HtmlGenericControl() { InnerText = "Post URL : <br/>" + string.Join("<br />", listURL) });
+                    case "Update Time All Post By Label":
+                        UpdateTimeOfAllPostByLabel("Blogger Theme");
                         break;
                     case "Add Label For Non Label Post":
-                        repo = new BloggerRepository();
-                        repo.Authenticate();
-                        listPost = await repo.GetPostNoneLabel();
-                        listURL = new List<string>();
-                        foreach (var p in listPost)
-                        {
-                            p.Labels = new List<string> { "Technical Sharing" };
-                            var rs = await repo.UpdatePostToBlogAsync(p);
-                            listURL.Add(rs);
-                        }
-                        Result.Controls.Add(new HtmlGenericControl() { InnerText = "Post URL : <br/>" + string.Join("<br />", listURL) });
+                        AddLabelForNonLabelPost("Technical Sharing");
                         break;
                     default: break;
                 }
