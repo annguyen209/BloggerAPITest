@@ -6,6 +6,10 @@
         <asp:Button runat="server" CssClass="btn btn-danger" OnClick="btnRun_Click" ID="btnRun" Text="Run" Width="150" />
     </div>
     <div style="padding-top: 2em;">
+        <h3>Generate Post With Checking Existence</h3>
+        <asp:Button runat="server" CssClass="btn btn-danger" OnClick="btnRunCheckingExist_Click" ID="btnRunCheckingExist" Text="Run" Width="150" />
+    </div>
+    <div style="padding-top: 2em;">
         <h3>Edit Time Post</h3>
         <asp:Button runat="server" CssClass="btn btn-danger" OnClick="btnEditTime_Click" ID="btnEditTime" Text="Run" Width="150" />
     </div>

@@ -29,8 +29,8 @@ namespace BloggerAPI
             var address = "http://www.cssauthor.com/blogger-templates-2015/";
             var label = new List<string>();
             label.Add("Blogger Theme");
-            //RunImportFromSite(address, label);
-            RunImportFromSiteWithCheckExist(address, label);
+            RunImportFromSite(address, label);
+            //RunImportFromSiteWithCheckExist(address, label);
         }
 
         protected async void RunImportFromSite(string url, List<string> label)
@@ -43,8 +43,8 @@ namespace BloggerAPI
                 List<string> listURL = new List<string>();
                 foreach (var p in list)
                 {
-                    p.Updated = DateTime.Now.AddMinutes(new Random().Next(30));
-                    p.Published = p.Updated.Value.AddMinutes(new Random().Next(30));
+                    p.Updated = DateTime.Now.AddMinutes(new Random().Next(10));
+                    p.Published = p.Updated.Value.AddMinutes(new Random().Next(10));
                     string rs = await repo.AddPostToBlogAsync(p);
                     listURL.Add(rs);
                 }
@@ -70,8 +70,8 @@ namespace BloggerAPI
                     var exist = listPost.Where(pa => pa.Title.Equals(p.Title)).FirstOrDefault();
                     if (exist == null)
                     {
-                        p.Updated = DateTime.Now.AddMinutes(new Random().Next(30));
-                        p.Published = p.Updated.Value.AddMinutes(new Random().Next(30));
+                        p.Updated = DateTime.Now.AddMinutes(new Random().Next(10));
+                        p.Published = p.Updated.Value.AddMinutes(new Random().Next(10));
                         string rs = await repo.AddPostToBlogAsync(p);
                         listURL.Add(rs);
                     }
@@ -172,6 +172,15 @@ namespace BloggerAPI
             {
                 Result.Controls.Add(new HtmlGenericControl() { InnerText = "Exception :)" + ex.StackTrace });
             }
+        }
+
+        protected async void btnRunCheckingExist_Click(object sender, EventArgs e)
+        {
+            var address = "http://www.cssauthor.com/blogger-templates-2015/";
+            var label = new List<string>();
+            label.Add("Blogger Theme");
+            //RunImportFromSite(address, label);
+            RunImportFromSiteWithCheckExist(address, label);
         }
     }
 }
