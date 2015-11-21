@@ -6,6 +6,7 @@
         <h3>Select Action</h3>
         <asp:DropDownList runat="server" CssClass="form-control" ID="ddlAction" Width="40%">
             <asp:ListItem Text="---------- None ----------" Value="0" ></asp:ListItem>
+            <asp:ListItem Text="Gplus Share All Posts Today" Value="Gplus Share All Posts Today" ></asp:ListItem>
             <asp:ListItem Text="Generate Post CSAuthor" Value="Generate Post CSAuthor" ></asp:ListItem>
             <asp:ListItem Text="Generate Post CSAuthor With Checking Existence" Value="Generate Post CSAuthor With Checking Existence" ></asp:ListItem>
             <asp:ListItem Text="Update Time All Post By Label" Value="Update Time All Post By Label" ></asp:ListItem>

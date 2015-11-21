@@ -121,6 +121,33 @@ namespace BloggerAPI.Helper
                 throw ex;
             }
         }
+
+        public async Task<IEnumerable<Google.Apis.Blogger.v3.Data.Post>> GetPostByPublishedTime(DateTime from, DateTime to)
+        {
+            try
+            {
+                DateTime.Compare(from, to);
+                var req = service.Posts.List(blogId);
+                var reqRs = await req.ExecuteAsync();
+                List<Google.Apis.Blogger.v3.Data.Post> list = new List<Google.Apis.Blogger.v3.Data.Post>();
+                list = reqRs.Items.Where(p => DateTime.Compare(p.Published.Value, from) > 0 && DateTime.Compare(p.Published.Value, to) < 0).ToList();
+                while (reqRs.NextPageToken != null)
+                {
+                    req.PageToken = reqRs.NextPageToken;
+                    reqRs = await req.ExecuteAsync();
+                    var rs = reqRs.Items.Where(p => DateTime.Compare(p.Published.Value, from) > 0 && DateTime.Compare(p.Published.Value, to) < 0).ToList();
+                    if (rs != null)
+                    {
+                        list.AddRange(rs);
+                    }
+                }
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 
 }

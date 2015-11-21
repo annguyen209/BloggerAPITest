@@ -152,6 +152,22 @@ namespace BloggerAPI
             Result.Controls.Add(new HtmlGenericControl() { InnerText = "Post URL : <br/>" + string.Join("<br />", listURL) });
                         
         }
+
+        protected async void GSharePublishedPostsByTime(DateTime from, DateTime to)
+        {
+            var repo = new BloggerRepository();
+            repo.Authenticate();
+            var listPost = await repo.GetPostByPublishedTime(from, to);
+            var listURL = new List<string>();
+            string gurl = "https://plus.google.com/share?url=";
+            foreach (var p in listPost)
+            {
+                string script = string.Format("window.open('{0}');", gurl + p.Url);
+                Page.ClientScript.RegisterStartupScript(this.GetType(),
+                                        "newPage" + Guid.NewGuid(), script, true);
+                
+            }
+        }
         protected async void btnRunAction_Click(object sender, EventArgs e)
         {
             try
@@ -175,6 +191,9 @@ namespace BloggerAPI
                         break;
                     case "Add Label For Non Label Post":
                         AddLabelForNonLabelPost("Technical Sharing");
+                        break;
+                    case "Gplus Share All Posts Today":
+                        GSharePublishedPostsByTime(DateTime.Now.AddDays(-1), DateTime.Now.AddDays(1));
                         break;
                     default: break;
                 }
