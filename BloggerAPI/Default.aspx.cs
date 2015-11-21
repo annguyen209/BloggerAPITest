@@ -186,6 +186,7 @@ namespace BloggerAPI
                     post.Content = postContent.InnerHtml;
                     post.Updated = DateTime.Now;
                     post.Published = post.Updated.Value.AddMinutes(1);
+                    post.Labels = label;
                     return post;
                 }
                 else
