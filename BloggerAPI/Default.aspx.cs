@@ -128,8 +128,8 @@ namespace BloggerAPI
             List<string> listURL = new List<string>();
             foreach (var p in listPost)
             {
-                p.Updated = DateTime.Now.AddMinutes(new Random().Next(30));
-                p.Published = p.Updated.Value.AddMinutes(new Random().Next(30));
+                p.Updated = DateTime.Now.AddMinutes(new Random().Next(10));
+                p.Published = p.Updated.Value.AddMinutes(new Random().Next(10));
                 var rs = await repo.UpdatePostToBlogAsync(p);
                 listURL.Add(rs);
             }
