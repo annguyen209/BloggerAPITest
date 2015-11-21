@@ -3,9 +3,10 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     
     <div style="padding-top: 2em;">
-        <h3>Select Action</h3>
+        <h3>Select Action</h3>Generate Post General Site
         <asp:DropDownList runat="server" CssClass="form-control" ID="ddlAction" Width="40%">
             <asp:ListItem Text="---------- None ----------" Value="0" ></asp:ListItem>
+            <asp:ListItem Text="Generate Post General Site" Value="Generate Post General Site" ></asp:ListItem>
             <asp:ListItem Text="Gplus Share All Posts Today" Value="Gplus Share All Posts Today" ></asp:ListItem>
             <asp:ListItem Text="Generate Post CSAuthor" Value="Generate Post CSAuthor" ></asp:ListItem>
             <asp:ListItem Text="Generate Post CSAuthor With Checking Existence" Value="Generate Post CSAuthor With Checking Existence" ></asp:ListItem>

@@ -43,7 +43,7 @@ namespace BloggerAPI
             }
             catch (Exception ex)
             {
-                Result.Controls.Add(new HtmlGenericControl() { InnerText = "Exception :)" + ex.StackTrace });
+                throw ex;
             }
         }
 
@@ -71,7 +71,7 @@ namespace BloggerAPI
             }
             catch (Exception ex)
             {
-                Result.Controls.Add(new HtmlGenericControl() { InnerText = "Exception: " + "<h3>" + ex.Message + "</h3><br/>" + ex.StackTrace });
+                throw ex;
             }
         }
         protected async Task<IEnumerable<Google.Apis.Blogger.v3.Data.Post>> AnalyzeCSAuthor(List<string> label)
@@ -168,6 +168,55 @@ namespace BloggerAPI
                 
             }
         }
+
+        protected async Task<Google.Apis.Blogger.v3.Data.Post> AnalyzeGeneralSite(List<string> label, string url, string rootNodeID, string titleNode,  string bodyNode)
+        {
+            try
+            {
+                var config = Configuration.Default.WithDefaultLoader();
+                var address = url;
+                var document = await BrowsingContext.New(config).OpenAsync(address);
+                var root = document.QuerySelector(rootNodeID);
+                var title = root.QuerySelector(titleNode);
+                var postContent = root.QuerySelector(bodyNode);
+                if (title != null && postContent != null)
+                {
+                    Google.Apis.Blogger.v3.Data.Post post = new Google.Apis.Blogger.v3.Data.Post();
+                    post.Title = title.TextContent;
+                    post.Content = postContent.InnerHtml;
+                    post.Updated = DateTime.Now;
+                    post.Published = post.Updated.Value.AddMinutes(1);
+                    return post;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        protected async void RunImportFromGeneralSIte(List<string> label, string url, string rootNodeID, string titleNode, string bodyNode)
+        {
+            BloggerRepository repo = new BloggerRepository();
+            try
+            {
+                repo.Authenticate();
+                var post = await AnalyzeGeneralSite(label,url, rootNodeID,titleNode,bodyNode);
+                if (post != null)
+                {
+                    string rs = await repo.AddPostToBlogAsync(post);
+                    Result.Controls.Add(new HtmlGenericControl() { InnerText = "Post URL : <br/>" + rs });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         protected async void btnRunAction_Click(object sender, EventArgs e)
         {
             try
@@ -176,8 +225,17 @@ namespace BloggerAPI
 
                 switch (action)
                 {
-                    case "Generate Post CSAuthor":
+                    case "Generate Post General Site":
                         var label = new List<string>();
+                        label.Add("Blogger Theme");
+                        string url = "http://helplogger.blogspot.com/2014/10/6-custom-search-boxes--for-blogger.html";
+                        string rootNodeID = "div#main-content";
+                        string titleNode = "div.post h1"; 
+                        string bodyNode = "div.post-body";
+                        RunImportFromGeneralSIte(label, url, rootNodeID, titleNode, bodyNode);
+                        break;
+                    case "Generate Post CSAuthor":
+                        label = new List<string>();
                         label.Add("Blogger Theme");
                         RunImportFromCSAuthor(label);
                         break;
